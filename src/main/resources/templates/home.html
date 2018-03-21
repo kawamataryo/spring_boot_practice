@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Berserker index page</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+<form method="POST" th:action="@{/}">
+  <div th:if="${personForm != null}" th:object="${personForm}">
+    <ul>
+      <li th:each="e : ${#fields.detailedErrors()}" th:text="${e}"></li>
+    </ul>
+  </div>
+  <label for="name">Your name:</label>
+  <input type="text" name="name">
+  <label for="age">Your age:</label>
+  <input type="number" name="age">
+  <input type="submit" value="submit">
+</form>
+<hr />
+<h2>People</h2>
+<ul>
+  <li th:each="p : ${persons}" th:text="${p}"></li>
+</ul>
+</body>
+</html>
