@@ -7,6 +7,7 @@
 </head>
 <body>
 <h1 th:text="${message}"></h1>
+<h2>add person</h2>
 <form method="POST" th:action="@{/}">
   <div th:if="${personForm != null}" th:object="${personForm}">
     <ul>
@@ -18,6 +19,12 @@
   <label for="age">Your age:</label>
   <input type="number" name="age">
   <input type="submit" value="submit">
+</form>
+<h2>serch person</h2>
+<form method="GET" th:action="@{/search}">
+  <label for="age">search age</label>
+  <input type="number" name="age">
+  <input type="submit" value="sbumit">
 </form>
 <hr />
 <h2>People</h2>

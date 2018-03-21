@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.form.PersonForm;
+import com.example.demo.form.SearchForm;
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
 import javax.validation.Valid;
@@ -26,11 +27,25 @@ public class HomeController {
     return "home";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
-  public String post(@ModelAttribute("personForm") @Valid PersonForm personForm, BindingResult result, Model model) {
+  @RequestMapping(value = "search", method = RequestMethod.GET)
+  public String search(@ModelAttribute("searchForm") @Valid SearchForm searchForm,
+      BindingResult result, Model model) {
     if (result.hasErrors()) {
       model.addAttribute("message", "Error");
-    }else {
+    } else {
+      Integer age = searchForm.getAge();
+      model.addAttribute("age", age);
+      model.addAttribute("result", personRepository.findByAgeIs(age));
+    }
+    return "searchResult";
+  }
+
+  @RequestMapping(method = RequestMethod.POST)
+  public String post(@ModelAttribute("personForm") @Valid PersonForm personForm,
+      BindingResult result, Model model) {
+    if (result.hasErrors()) {
+      model.addAttribute("message", "Error");
+    } else {
       String name = personForm.getName();
       Integer age = personForm.getAge();
       personRepository.save(new Person(name, age));

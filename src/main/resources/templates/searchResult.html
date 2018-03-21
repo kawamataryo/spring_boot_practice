@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Berserker index page</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<h1>search result</h1>
+<p th:text="${message}"></p>
+<form method="GET" th:action="@{/search}">
+  <label for="age">search age</label>
+  <input type="number" name="age">
+  <input type="submit" value="submit">
+</form>
+<h2>People</h2>
+<p th:if="${#lists.isEmpty(result)}" th:inline="text">can not find person at [[${age}]] years
+  old.</p>
+<ul>
+  <li th:each="r : ${result}" th:inline="text">name is [[${r.getName()}]]</li>
+</ul>
+<a th:href="@{/}">to home</a>
+</body>
+</html>

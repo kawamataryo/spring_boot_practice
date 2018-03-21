@@ -1,0 +1,10 @@
+#spring:
+#    thymeleaf:
+#        cache: false
+#    datasource:
+#        url: jdbc:postgresql://localhost:5432/person
+#        username: postgres
+#        password:
+#    jpa:
+#        database-platform: org.hibernate.dialect.PostgreSQLDialect
+#        generate-ddl: true

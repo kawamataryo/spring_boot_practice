@@ -7,4 +7,5 @@ import org.springframework.data.repository.RepositoryDefinition;
 public interface PersonRepository {
   Person save(Person person);
   Iterable<Person> findAll();
+  Iterable<Person> findByAgeIs(int age);
 }

@@ -1,5 +1,5 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG JAR_FILE
-ADD ${JAR_FILE} app.ja
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+FROM postgres:9.3
+RUN localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
+ENV LANG ja_JP.UTF-8
+EXPOSE 5432
+COPY db_init/*.sql /docker-entrypoint-initdb.d/
